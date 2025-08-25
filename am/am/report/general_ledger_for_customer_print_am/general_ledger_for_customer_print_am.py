@@ -213,9 +213,9 @@ def get_gl_entries(filters, accounting_dimensions):
 def get_conditions(filters):
 	conditions = []
 
-	ignore_is_opening = frappe.db.get_single_value(
-		"Accounts Settings", "ignore_is_opening_check_for_reporting"
-	)
+	# ignore_is_opening = frappe.db.get_single_value(
+	# 	"Accounts Settings", "ignore_is_opening_check_for_reporting"
+	# )
 
 	if filters.get("account"):
 		filters.account = get_accounts_with_children(filters.account)
@@ -279,15 +279,15 @@ def get_conditions(filters):
 		or filters.get("party")
 		or filters.get("categorize_by") in ["Categorize by Account", "Categorize by Party"]
 	):
-		if not ignore_is_opening:
-			conditions.append("(posting_date >=%(from_date)s or is_opening = 'Yes')")
-		else:
-			conditions.append("posting_date >=%(from_date)s")
+		# if not ignore_is_opening:
+		# 	conditions.append("(posting_date >=%(from_date)s or is_opening = 'Yes')")
+		# else:
+		conditions.append("posting_date >=%(from_date)s")
 
-	if not ignore_is_opening:
-		conditions.append("(posting_date <=%(to_date)s or is_opening = 'Yes')")
-	else:
-		conditions.append("posting_date <=%(to_date)s")
+	# if not ignore_is_opening:
+	# 	conditions.append("(posting_date <=%(to_date)s or is_opening = 'Yes')")
+	# else:
+	conditions.append("posting_date <=%(to_date)s")
 
 	if filters.get("project"):
 		conditions.append("project in %(project)s")
