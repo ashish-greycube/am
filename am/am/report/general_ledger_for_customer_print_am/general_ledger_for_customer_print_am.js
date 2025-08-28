@@ -254,8 +254,8 @@ function get_customer_details(){
 	let values = r.message;
 	frappe.query_report.set_filter_value("territory", values.territory);
 	frappe.query_report.set_filter_value("customer_group", values.customer_group);
-	frappe.query_report.set_filter_value("custom_student_level", values.customer_group);
-	frappe.query_report.set_filter_value("custom_student_phone_no_1", values.customer_group);
+	frappe.query_report.set_filter_value("custom_student_level", values.custom_student_level);
+	frappe.query_report.set_filter_value("custom_student_phone_no_1", values.custom_student_phone_no_1);
 	})
 	console.log(party_type, party)
 }
